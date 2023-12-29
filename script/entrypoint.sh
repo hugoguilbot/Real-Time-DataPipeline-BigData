@@ -1,22 +1,26 @@
 #!/bin/bash
 set -e
 
+# Mise à jour de pip et installation des dépendances
 if [ -e "/opt/airflow/requirements.txt" ]; then
-  $(command python) pip install --upgrade pip
-  $(command -v pip) install --user -r requirements.txt
+    python -m pip install --upgrade pip
+    pip install --user -r /opt/airflow/requirements.txt
 fi
 
+# Initialisation de la base de données Airflow si elle n'existe pas
 if [ ! -f "/opt/airflow/airflow.db" ]; then
-  airflow db init && \
-  airflow users create \
-    --username admin \
-    --firstname admin \
-    --lastname admin \
-    --role Admin \
-    --email admin@example.com \
-    --password admin
+    airflow db init && \
+    airflow users create \
+        --username admin \
+        --firstname admin \
+        --lastname admin \
+        --role Admin \
+        --email admin@example.com \
+        --password admin
 fi
 
-$(command -v airflow) db upgrade
+# Mise à jour de la base de données Airflow
+airflow db upgrade
 
+# Démarrage du serveur web Airflow
 exec airflow webserver

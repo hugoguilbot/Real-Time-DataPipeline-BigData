@@ -64,7 +64,7 @@ def create_kafka_producer():
     Creates the Kafka producer object
     """
 
-    return KafkaProducer(bootstrap_servers=['localhost:9092'])
+    return KafkaProducer(bootstrap_servers=['broker:29092'])
 
 
 def start_streaming():
@@ -72,17 +72,15 @@ def start_streaming():
     Writes the API data every 10 seconds to Kafka topic companies_created
     """
     producer = create_kafka_producer()
-    companies = get_company_data()
-    kafka_data = create_final_json(companies)    
-
-    end_time = time.time() + 300 # the script will run for 1 minutes
-    while True:
-        if time.time() > end_time:
-            break
+    end_time = time.time() + 60  # the script will run for 5 minutes
+    while time.time() < end_time:
         companies = get_company_data()
-        kafka_data = create_final_json(companies)  
-        producer.send("companies_created", json.dumps(kafka_data).encode('utf-8'))
+        if companies:
+            kafka_data = create_final_json(companies)
+            producer.send("companies_created", json.dumps(kafka_data).encode('utf-8'))
+            logging.info("Data sent to Kafka")
         time.sleep(10)
+    producer.close()
 
 
 if __name__ == "__main__":
