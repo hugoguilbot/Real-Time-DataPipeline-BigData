@@ -3,6 +3,7 @@ import json
 import time
 import uuid
 from kafka import KafkaProducer
+import random
 import logging
 
 # default_args = {
@@ -18,63 +19,71 @@ def get_company_data():
     return res['data'][0]
 
 
-def format_data(res):
-    # Vérifier si la réponse contient des données
-    if not res or 'data' not in res or not res['data']:
+def create_final_json(res):
+    if not res:
         return None
 
-    # Extraire la première entrée des données (supposant qu'il y a toujours au moins une entrée)
-    company_data = get_company_data()
-
     # Création du dictionnaire de formatage
-    formatted_data = {
-        'id': str(uuid.uuid4()),  # Générer un UUID unique
-        'original_id': company_data.get('id'),  # ID original de la réponse
-        'name': company_data.get('name'),
-        'email': company_data.get('email'),
-        'vat': company_data.get('vat'),
-        'phone': company_data.get('phone'),
-        'country': company_data.get('country'),
-        'website': company_data.get('website'),
-        'image': company_data.get('image'),
-        'addresses': company_data.get('addresses', []),  # Liste des adresses
-        'contact': {
-            'firstname': company_data['contact']['firstname'],
-            'lastname': company_data['contact']['lastname'],
-            'email': company_data['contact']['email'],
-            'phone': company_data['contact']['phone'],
-            'birthday': company_data['contact']['birthday'],
-            'gender': company_data['contact']['gender'],
-            'contact_address': company_data['contact']['address']
-        }
+    formatted_data = {}
+    
+    formatted_data['id'] = str(uuid.uuid4())  # Générer un UUID unique
+    # Assurez-vous que ces champs existent dans 'res' avant de les décommenter
+    formatted_data['name'] = res.get('name')
+    formatted_data['email'] = res.get('email')
+    formatted_data['vat'] = res.get('vat')
+    formatted_data['phone'] = res.get('phone')
+    formatted_data['country'] = res.get('country')
+    formatted_data['website'] = res.get('website')
+    formatted_data['image'] = res.get('image')
+    formatted_data['addresses'] = res.get('addresses', [])  # Liste des adresses
+
+    # Extraction des informations de contact
+    contact = res.get('contact', {})
+    formatted_data['contact'] = {
+        'firstname': contact.get('firstname'),
+        'lastname': contact.get('lastname'),
+        'email': contact.get('email'),
+        'phone': contact.get('phone'),
+        'birthday': contact.get('birthday'),
+        'gender': contact.get('gender'),
+        'contact_address': contact.get('address')
     }
+
+    # Données ajoutées
+    formatted_data['revenue'] = random.uniform(10000, 1000000)  # Chiffre d'affaires simulé
+    formatted_data['number_of_employees'] = random.randint(10, 5000)  # Nombre d'employés
+    formatted_data['sector'] = random.choice(['Technology', 'Healthcare', 'Finance', 'Retail', 'Agriculture'])  # Secteur d'activité
+    formatted_data['founded_date'] = f"19{random.randint(70, 99)}-{random.randint(1, 12):02d}-{random.randint(1, 28):02d}"  # Date de fondation simulée
+    formatted_data['valuation'] = random.uniform(1000000, 10000000)  # Évaluation de l'entreprise
+    formatted_data['investment_received'] = random.uniform(100000, 5000000)  # Investissements reçus
 
     return formatted_data
 
+def create_kafka_producer():
+    """
+    Creates the Kafka producer object
+    """
 
-def stream_data():
+    return KafkaProducer(bootstrap_servers=['localhost:9092'])
 
-    producer = KafkaProducer(bootstrap_servers=['broker:29092'], max_block_ms=5000)
-    curr_time = time.time()
 
+def start_streaming():
+    """
+    Writes the API data every 10 seconds to Kafka topic companies_created
+    """
+    producer = create_kafka_producer()
+    companies = get_company_data()
+    kafka_data = create_final_json(companies)    
+
+    end_time = time.time() + 300 # the script will run for 1 minutes
     while True:
-        if time.time() > curr_time + 60: #1 minute
+        if time.time() > end_time:
             break
-        try:
-            res = get_company_data()
-            res = format_data(res)
+        companies = get_company_data()
+        kafka_data = create_final_json(companies)  
+        producer.send("companies_created", json.dumps(kafka_data).encode('utf-8'))
+        time.sleep(10)
 
-            producer.send('users_created', json.dumps(res).encode('utf-8'))
-        except Exception as e:
-            logging.error(f'An error occured: {e}')
-            continue
 
-# with DAG('user_automation',
-#          default_args=default_args,
-#          schedule_interval='@daily',
-#          catchup=False) as dag:
-
-#     streaming_task = PythonOperator(
-#         task_id='stream_data_from_api',
-#         python_callable=stream_data
-#     )
+if __name__ == "__main__":
+    start_streaming()
