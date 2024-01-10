@@ -6,11 +6,6 @@ from kafka import KafkaProducer
 import random
 import logging
 
-# default_args = {
-#     'owner': 'airscholar',
-#     'start_date': datetime(2023, 9, 3, 10, 00)
-# }
-
 def get_company_data():
 
     res = requests.get("https://fakerapi.it/api/v1/companies?_quantity=1")
@@ -63,16 +58,15 @@ def create_kafka_producer():
     """
     Creates the Kafka producer object
     """
-
     return KafkaProducer(bootstrap_servers=['broker:29092'])
 
 
 def start_streaming():
     """
-    Writes the API data every 10 seconds to Kafka topic companies_created
+    Writes the API data in continue to Kafka topic companies_created
     """
     producer = create_kafka_producer()
-    #end_time = time.time() + 60  # the script will run for 5 minutes
+
     while True:
         companies = get_company_data()
         if companies:
