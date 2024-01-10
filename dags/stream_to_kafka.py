@@ -72,15 +72,14 @@ def start_streaming():
     Writes the API data every 10 seconds to Kafka topic companies_created
     """
     producer = create_kafka_producer()
-    end_time = time.time() + 60  # the script will run for 5 minutes
-    while time.time() < end_time:
+    #end_time = time.time() + 60  # the script will run for 5 minutes
+    while True:
         companies = get_company_data()
         if companies:
             kafka_data = create_final_json(companies)
             producer.send("companies_created", json.dumps(kafka_data).encode('utf-8'))
             logging.info("Data sent to Kafka")
         time.sleep(10)
-    producer.close()
 
 
 if __name__ == "__main__":
