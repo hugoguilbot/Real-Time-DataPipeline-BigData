@@ -44,7 +44,7 @@ Scripts:
 
 1. Clone the repository:
     ```bash
-        https://github.com/Laguilbee/Real-Time-DataPipeline-BigData.git
+    https://github.com/Laguilbee/Real-Time-DataPipeline-BigData.git
     ```
 2. Navigate to the project directory:
     ```bash
