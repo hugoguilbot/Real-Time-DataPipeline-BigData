@@ -1,6 +1,5 @@
 from array import ArrayType
 import logging
-import json
 from cassandra.cluster import Cluster
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_json, col
@@ -41,41 +40,6 @@ def create_table(session):
     print("Table created successfully!")
 
 
-def insert_data(session, **kwargs):
-    print("inserting data...")
-
-    company_id = kwargs.get('id')
-    name = kwargs.get('name')
-    email = kwargs.get('email')
-    vat = kwargs.get('vat')
-    phone = kwargs.get('phone')
-    country = kwargs.get('country')
-    website = kwargs.get('website')
-    image = kwargs.get('image')
-    addresses = json.dumps(kwargs.get('addresses'))
-    # Convertir les informations de contact en chaîne de caractères JSON
-    contact = json.dumps(kwargs.get('contact'))
-    revenue = kwargs.get('revenue')
-    picture = kwargs.get('picture')
-    number_of_employees = kwargs.get('number_of_employees')
-    sector = kwargs.get('sector')
-    founded_date = kwargs.get('founded_date')
-    valuation = kwargs.get('valuation')
-    investment_received = kwargs.get('investment_received')
-
-    try:
-        session.execute("""
-            INSERT INTO spark_streams.companies_created(id, name, email, vat, phone, country, website, 
-                        image, addresses, contact, revenue, number_of_employees, sector, founded_date, valuation, investment_received)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """, (company_id, name, email, vat, phone, country,
-              website, image, addresses, contact, revenue, number_of_employees, sector, founded_date, valuation,
-              investment_received))
-        logging.info(f"Data inserted for company {name}")
-    except Exception as e:
-        logging.error(f'Could not insert data due to {e}')
-
-
 def create_spark_connection():
     try:
         s_conn = SparkSession.builder \
@@ -87,7 +51,6 @@ def create_spark_connection():
             .getOrCreate()
 
         s_conn.sparkContext.setLogLevel("ERROR")
-        print("-------------------------------------------------------------------------------------")
         print("Spark connection created successfully!")
         return s_conn
     except Exception as e:
@@ -96,7 +59,7 @@ def create_spark_connection():
 
 
 def connect_to_kafka(spark_conn):
-    print("passage")
+    print("Connection à Kafka...")
     spark_df = None
     try:
         spark_df = spark_conn.readStream \
@@ -161,9 +124,8 @@ if __name__ == "__main__":
     spark_conn = create_spark_connection()
 
     if spark_conn is not None:
-        #     # connect to kafka with spark connection
+        # connect to kafka with spark connection
         spark_df = connect_to_kafka(spark_conn)
-        print(spark_df)
         selection_df = create_selection_df_from_kafka(spark_df)
         session = create_cassandra_connection()
 
@@ -171,7 +133,7 @@ if __name__ == "__main__":
             create_keyspace(session)
             create_table(session)
 
-        logging.info("Streaming is being started...")
+        print("Streaming is being started...")
 
         streaming_query = (selection_df.writeStream.format("org.apache.spark.sql.cassandra")
                            .option('checkpointLocation', '/tmp/checkpoint')
