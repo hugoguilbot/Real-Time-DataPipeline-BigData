@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Nom du conteneur du script Kafka
-CONTAINER_NAME=real-time-datapipeline-bigdata-kafka-script-1
+CONTAINER_NAME=kafka-script
 
 echo "Démarrage du conteneur Kafka: $CONTAINER_NAME"
 

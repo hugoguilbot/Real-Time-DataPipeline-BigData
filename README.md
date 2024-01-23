@@ -44,7 +44,7 @@ Scripts:
 
 1. Clone the repository:
     ```bash
-        https://github.com/Laguilbee/Real-Time-DataPipeline-BigData.git
+    https://github.com/Laguilbee/Real-Time-DataPipeline-BigData.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -82,7 +82,7 @@ To access the Spark container:
 
 
 ```bash
-docker exec -it real-time-datapipeline-bigdata-spark-master-1 /bin/bash
+docker exec -it spark-master /bin/bash
 ```
 Run the following commands to install the Cassandra driver:
 
