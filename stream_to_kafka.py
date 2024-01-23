@@ -5,6 +5,7 @@ import uuid
 from kafka import KafkaProducer
 import random
 import logging
+from datetime import datetime
 
 def get_company_data():
 
@@ -51,7 +52,7 @@ def create_final_json(res):
     formatted_data['founded_date'] = f"19{random.randint(70, 99)}-{random.randint(1, 12):02d}-{random.randint(1, 28):02d}"  # Date de fondation simulée
     formatted_data['valuation'] = random.uniform(1000000, 10000000)  # Évaluation de l'entreprise
     formatted_data['investment_received'] = random.uniform(100000, 5000000)  # Investissements reçus
-
+    formatted_data['timestamp_column'] = datetime.now().isoformat()
     return formatted_data
 
 def create_kafka_producer():
