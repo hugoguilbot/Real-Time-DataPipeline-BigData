@@ -110,7 +110,7 @@ def create_selection_df_from_kafka(spark_df):
         StructField("founded_date", StringType(), True),
         StructField("valuation", DoubleType(), True),
         StructField("investment_received", DoubleType(), True),
-        StructField("timestamp_column", TimestampType(), True)
+        StructField("timestamp_column", TimestampType(), False)
     ])
 
     # Sélection et transformation des données
