@@ -144,14 +144,11 @@ In the dashboard section, you might notice that the dashboards appear empty. Thi
 
 If the connection is successful, you can return to the dashboard, and you should be able to see the graphs.
 
-There is an alternative method, but it is not recommended.
-
-![grafana_1](https://github.com/Laguilbee/Real-Time-DataPipeline-BigData/assets/48654943/e22c74b0-b21c-4243-b431-1da7f5fca020)
-
+There is an alternative method (Importation method), but it is not recommended.
 
 ## Importing dashboard
 
-It's possible to import the dashboard we've created using the 'New dashboard-1707216913330.json' file. 
+It's possible to import the dashboard we've created using the 'config_dashboard.json' file. 
 
 
 ![grafana_16](https://github.com/Laguilbee/Real-Time-DataPipeline-BigData/assets/48654943/550e7f03-d9b2-4c57-b5cc-1b87628bd804)
@@ -161,10 +158,6 @@ You can now upload your dashboard via your json file. If you already have data i
 ![grafana_17](https://github.com/Laguilbee/Real-Time-DataPipeline-BigData/assets/48654943/a3402bc8-bf0b-48b0-9b60-6062094ea92d)
 
 Note that after importing your dashboard, it's important to refresh every panel in the dashboard so that you can visualize your graphic. Otherwise, nothing will be visible. 
-
-
-
-
 
 
 ## First visualization: Selecting investment received by all companies
