@@ -1,0 +1,1129 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "hadesarchitect-cassandra-datasource",
+        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "minVizHeight": 200,
+        "minVizWidth": 200,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "10.2.3",
+      "targets": [
+        {
+          "alias": "Technology",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "A",
+          "target": "SELECT timestamp_column, SUM(number_of_employees) FROM spark_streams.companies_created WHERE sector='Technology' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Retail",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "B",
+          "target": "SELECT timestamp_column, SUM(number_of_employees) FROM spark_streams.companies_created WHERE sector='Retail' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Healthcare",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "C",
+          "target": "SELECT timestamp_column, SUM(number_of_employees) FROM spark_streams.companies_created WHERE sector='Healthcare' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Finance",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "D",
+          "target": "SELECT timestamp_column, SUM(number_of_employees) FROM spark_streams.companies_created WHERE sector='Finance' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Agriculture",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "E",
+          "target": "SELECT timestamp_column, SUM(number_of_employees) FROM spark_streams.companies_created WHERE sector='Agriculture' ALLOW FILTERING;"
+        }
+      ],
+      "title": "Number of employees per sector",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "hadesarchitect-cassandra-datasource",
+        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "fillOpacity": 80,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 11,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "none",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 200
+      },
+      "pluginVersion": "10.2.3",
+      "targets": [
+        {
+          "alias": "Technology",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "A",
+          "target": "SELECT timestamp_column, COUNT(name) FROM spark_streams.companies_created WHERE sector='Technology' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Healthcare",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "B",
+          "target": "SELECT timestamp_column, COUNT(name) FROM spark_streams.companies_created WHERE sector='Healthcare' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Finance",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "C",
+          "target": "SELECT timestamp_column, COUNT(name) FROM spark_streams.companies_created WHERE sector='Finance' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Finance",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "D",
+          "target": "SELECT timestamp_column, COUNT(name) FROM spark_streams.companies_created WHERE sector='Retail' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Finance",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "E",
+          "target": "SELECT timestamp_column, COUNT(name) FROM spark_streams.companies_created WHERE sector='Agriculture' ALLOW FILTERING;"
+        }
+      ],
+      "title": "Number of companies per sector ",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "hadesarchitect-cassandra-datasource",
+        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 10,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "alias": "small companies",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "A",
+          "target": "SELECT timestamp_column, COUNT(name) FROM spark_streams.companies_created WHERE number_of_employees >= 10 AND number_of_employees < 49 ALLOW FILTERING;\n"
+        },
+        {
+          "alias": "medium-sized companies",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "B",
+          "target": "SELECT timestamp_column, COUNT(name) FROM spark_streams.companies_created WHERE number_of_employees >= 50 AND number_of_employees < 249 ALLOW FILTERING;\n"
+        },
+        {
+          "alias": "large companies",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "C",
+          "target": "SELECT timestamp_column, COUNT(name) FROM spark_streams.companies_created WHERE number_of_employees >= 250  ALLOW FILTERING;\n"
+        }
+      ],
+      "title": "Analyzing company size",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "hadesarchitect-cassandra-datasource",
+        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 9,
+      "options": {
+        "minVizHeight": 200,
+        "minVizWidth": 200,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "10.2.3",
+      "targets": [
+        {
+          "alias": "France",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "A",
+          "target": "SELECT timestamp_column, country, SUM(revenue) / SUM(investment_received) * 100 AS investment_percentage FROM spark_streams.companies_created WHERE country='France' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Singapore",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "B",
+          "target": "SELECT timestamp_column, country, SUM(revenue) / SUM(investment_received) * 100 AS investment_percentage FROM spark_streams.companies_created WHERE country='Singapore' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Australia",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "C",
+          "target": "SELECT timestamp_column, country,  SUM(revenue) / SUM(investment_received) * 100 AS investment_percentage FROM spark_streams.companies_created WHERE country='Australia' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Morocco",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "D",
+          "target": "SELECT timestamp_column, country,  SUM(revenue) / SUM(investment_received) * 100 AS investment_percentage FROM spark_streams.companies_created WHERE country='Morocco' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Mexico",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "E",
+          "target": "SELECT timestamp_column, country,  SUM(revenue) / SUM(investment_received) * 100 AS investment_percentage FROM spark_streams.companies_created WHERE country='Mexico' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Egypt",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "F",
+          "target": "SELECT timestamp_column, country,  SUM(revenue) / SUM(investment_received) * 100 AS investment_percentage FROM spark_streams.companies_created WHERE country='Egypt' ALLOW FILTERING;"
+        }
+      ],
+      "title": "revenue as a percentage of investment by country ",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "hadesarchitect-cassandra-datasource",
+        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 8,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "always",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "alias": "France ",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "A",
+          "target": "select timestamp_column, country, AVG(number_of_employees) AS average_revenue from spark_streams.companies_created WHERE country='France' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Egypt",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "B",
+          "target": "select timestamp_column, country, AVG(number_of_employees) AS average_revenue from spark_streams.companies_created WHERE country='Egypt' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Morocco",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "C",
+          "target": "select timestamp_column, country, AVG(number_of_employees) AS average_revenue from spark_streams.companies_created WHERE country='Morocco' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Australia",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "D",
+          "target": "select timestamp_column, country, AVG(number_of_employees) AS average_revenue from spark_streams.companies_created WHERE country='Australia' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Mexico",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "E",
+          "target": "select timestamp_column, country, AVG(number_of_employees) AS average_revenue from spark_streams.companies_created WHERE country='Mexico' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Singapore",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "F",
+          "target": "select timestamp_column, country, AVG(number_of_employees) AS average_revenue from spark_streams.companies_created WHERE country='Singapore' ALLOW FILTERING;"
+        }
+      ],
+      "title": "Average number of employees per country",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "hadesarchitect-cassandra-datasource",
+        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 40
+      },
+      "id": 7,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "targets": [
+        {
+          "alias": "France",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "A",
+          "target": "select timestamp_column, country, AVG(revenue) AS average_revenue from spark_streams.companies_created WHERE country='France' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Morocco",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "B",
+          "target": "select timestamp_column, country, AVG(revenue) AS average_revenue from spark_streams.companies_created WHERE country='Morocco' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Australia",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "C",
+          "target": "select timestamp_column, country, AVG(revenue) AS average_revenue from spark_streams.companies_created WHERE country='Australia' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Egypt",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "D",
+          "target": "select timestamp_column, country, AVG(revenue) AS average_revenue from spark_streams.companies_created WHERE country='Egypt' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Mexico",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "E",
+          "target": "select timestamp_column, country, AVG(revenue) AS average_revenue from spark_streams.companies_created WHERE country='Mexico' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Singapore",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "F",
+          "target": "select timestamp_column, country, AVG(revenue) AS average_revenue from spark_streams.companies_created WHERE country='Singapore' ALLOW FILTERING;"
+        }
+      ],
+      "title": "Revenue average per country",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "hadesarchitect-cassandra-datasource",
+        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "hidden",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 48
+      },
+      "id": 6,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.3",
+      "targets": [
+        {
+          "alias": "france",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "A",
+          "target": "select timestamp_column, country, AVG(investment_received) AS average_investment from spark_streams.companies_created WHERE country='France' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Egypt",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "B",
+          "target": "select timestamp_column, country, AVG(investment_received) AS average_investment from spark_streams.companies_created WHERE country='Egypt' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Australia",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "C",
+          "target": "select timestamp_column, country, AVG(investment_received) AS average_investment from spark_streams.companies_created WHERE country='Australia' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Morocco",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "D",
+          "target": "select timestamp_column, country, AVG(investment_received) AS average_investment from spark_streams.companies_created WHERE country='Morocco' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Singapore",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "E",
+          "target": "select timestamp_column, country, AVG(investment_received) AS average_investment from spark_streams.companies_created WHERE country='Mexico' ALLOW FILTERING;"
+        },
+        {
+          "alias": "Luxembourg",
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "hide": false,
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "F",
+          "target": "select timestamp_column, country, AVG(investment_received) AS average_investment from spark_streams.companies_created WHERE country='Luxembourg' ALLOW FILTERING;"
+        }
+      ],
+      "title": "Average investment per country",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "hadesarchitect-cassandra-datasource",
+        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 1,
+            "drawStyle": "points",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 56
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "hadesarchitect-cassandra-datasource",
+            "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+          },
+          "datasourceId": 1,
+          "keyspace": "spark_streams",
+          "queryType": "query",
+          "rawQuery": true,
+          "refId": "A",
+          "target": "select timestamp_column, investment_received from spark_streams.companies_created;"
+        }
+      ],
+      "title": "investement received for all companies",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "New dashboard",
+  "uid": "fca3c991-5531-49f5-b6ec-aa2b024edeb8",
+  "version": 28,
+  "weekStart": ""
+}
