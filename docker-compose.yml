@@ -162,22 +162,43 @@ services:
     networks:
       - confluent
     
+  # grafana:
+  #   build:
+  #     context: ./grafana
+  #   container_name: grafana
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     GF_SECURITY_ADMIN_USER: admin
+  #     GF_SECURITY_ADMIN_PASSWORD: admin
+  #     GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/var/lib/grafana/dashboards/config_dashboard.json"
+  #   depends_on:
+  #     - cassandra
+  #   networks:
+  #     - confluent
   grafana:
-    image: grafana/grafana:latest
+    build: ./grafana  # Spécifie le chemin vers le dossier contenant le Dockerfile
     container_name: grafana
     ports:
-      - "3000:3000"
+      - "3000:3000"  # Expose Grafana sur le port 3000
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_AUTH_BASIC_ENABLED: "false"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/var/lib/grafana/dashboards/config_dashboard.json"
+    volumes:
+      - grafana-data:/var/lib/grafana  # Persiste les données Grafana
     depends_on:
-      - cassandra
+      - cassandra  # Assure que Grafana démarre après Cassandra
     networks:
       - confluent
 
 volumes:
   cassandra-data:
   spark-data:
+  grafana-data:
 
 networks:
   confluent:

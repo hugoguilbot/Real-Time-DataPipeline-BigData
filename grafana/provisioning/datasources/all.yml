@@ -1,0 +1,9 @@
+apiVersion: 1
+
+datasources:
+  - name: cassandra
+    type: hadesarchitect-cassandra-datasource # Assurez-vous que c'est le bon ID de plugin
+    url: cassandra:9042
+    access: proxy
+    editable: true
+    isDefault: true 
