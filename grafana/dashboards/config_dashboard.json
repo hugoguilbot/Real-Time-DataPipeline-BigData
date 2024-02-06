@@ -18,15 +18,11 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "hadesarchitect-cassandra-datasource",
-        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -45,7 +41,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -71,7 +68,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.1",
       "targets": [
         {
           "alias": "Technology",
@@ -142,10 +139,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "hadesarchitect-cassandra-datasource",
-        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -186,7 +180,8 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "none",
+          "unitScale": true
         },
         "overrides": []
       },
@@ -289,10 +284,7 @@
       "type": "barchart"
     },
     {
-      "datasource": {
-        "type": "hadesarchitect-cassandra-datasource",
-        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -332,7 +324,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -410,7 +403,7 @@
     {
       "datasource": {
         "type": "hadesarchitect-cassandra-datasource",
-        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
+        "uid": "PF1C6127B16FF422B"
       },
       "fieldConfig": {
         "defaults": {
@@ -430,7 +423,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -456,7 +450,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.3.1",
       "targets": [
         {
           "alias": "France",
@@ -540,10 +534,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "hadesarchitect-cassandra-datasource",
-        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -583,7 +574,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -698,10 +690,7 @@
       "type": "barchart"
     },
     {
-      "datasource": {
-        "type": "hadesarchitect-cassandra-datasource",
-        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -741,7 +730,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -856,10 +846,7 @@
       "type": "barchart"
     },
     {
-      "datasource": {
-        "type": "hadesarchitect-cassandra-datasource",
-        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -899,7 +886,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -1015,10 +1003,7 @@
       "type": "barchart"
     },
     {
-      "datasource": {
-        "type": "hadesarchitect-cassandra-datasource",
-        "uid": "ef5f2b16-e1ce-415c-ad68-2d7589b24891"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1069,7 +1054,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -1122,8 +1108,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "New dashboard",
+  "title": "Dashboard",
   "uid": "fca3c991-5531-49f5-b6ec-aa2b024edeb8",
-  "version": 28,
+  "version": 1,
   "weekStart": ""
 }
