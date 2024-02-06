@@ -72,11 +72,11 @@ If you want to stop or start the streaming kafka :
     ```
 2. Run the scripts start_kakfka_streaming.sh ou stop_kakfka_streaming.sh:
     ```bash
-    ./start_kakfka_streaming.sh
+    ./start_kafka_streaming.sh
     ```
     or
    ```bash
-    ./stop_kakfka_streaming.sh
+    ./stop_kafka_streaming.sh
     ```
 
 ## Spark
@@ -252,3 +252,16 @@ SELECT timestamp_column, SUM(number_of_employees) FROM spark_streams.companies_c
 We do it for all the other sectors. 
 
 ![grafana_15](https://github.com/Laguilbee/Real-Time-DataPipeline-BigData/assets/48654943/a86875b4-d8ed-46cc-a289-8546631c9a33)
+
+## Importing dashboard
+
+It's possible to import the dashboard we've created using the 'New dashboard-1707216913330.json' file. 
+
+
+![grafana_16](https://github.com/Laguilbee/Real-Time-DataPipeline-BigData/assets/48654943/550e7f03-d9b2-4c57-b5cc-1b87628bd804)
+
+You can now upload your dashboard via your json file. If you already have data inside your Cassandra table, you will be able to visualize your dashboard where you will find your cql queries. 
+
+![grafana_17](https://github.com/Laguilbee/Real-Time-DataPipeline-BigData/assets/48654943/a3402bc8-bf0b-48b0-9b60-6062094ea92d)
+
+Note that after importing your dashboard, it's important to refresh every panel in the dashboard so that you can visualize your graphic. Otherwise, nothing will be visible. 
