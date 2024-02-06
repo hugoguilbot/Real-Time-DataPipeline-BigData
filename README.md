@@ -72,11 +72,11 @@ If you want to stop or start the streaming kafka :
     ```
 2. Run the scripts start_kakfka_streaming.sh ou stop_kakfka_streaming.sh:
     ```bash
-    ./start_kakfka_streaming.sh
+    ./start_kafka_streaming.sh
     ```
     or
    ```bash
-    ./stop_kakfka_streaming.sh
+    ./stop_kafka_streaming.sh
     ```
 
 ## Spark
